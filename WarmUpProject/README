@@ -1,0 +1,41 @@
+This project is trying to unravel the relationship between a programmer's english proficiency and his coding
+proficiency. We created a survey and handed it out to people, then we gather the results and preformed several data
+analysis on it. Here are the methods:
+
+We first need to gather data, data for each participants include his english proficiency and his coding proficiency
+We assess by three aspects:
+Self - objective assess
+Self - subjective assess
+Subjective assess:
+
+for english, the self - objective assesses are:
+1. are you a native english speaker
+2. How many hours per day do you spend speaking English?
+
+for english, the self - subjective assesses are:
+1. can you watch movies without subtitles?
+2. How often do you use variable names transcribed from your language while coding?
+3. How would you rate your English proficiency?
+
+for english, the objective assess are:
+1. None
+
+
+for coding proficiency, the self - objective assess are:
+1. How would you rate your coding proficiency?
+
+for coding, the self - subjective assesses are:
+1. How many years have you worked coding (not including higher education)
+
+for coding, the objective assess are:
+1. Which of the following is a Boolean?
+2. Which website do you use for coding help?
+3. 6 coding questions
+
+then for each of the three category:
+we normalize each question's score to 0 - 1, based on the full score of the question, and added up by unweighted average
+Then we normalize the total score for this category to 0 - 1, based on all participants
+(the two normalization methods are different because for little question, there is always someone who's right, besides,
+it's usually binary, right or wrong, so if a question is T/F and no one gets it right, then it wouldn't make sense to
+normalize)
+Finally, we added up the three category by unweighted average.
