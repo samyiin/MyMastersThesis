@@ -5,8 +5,9 @@ import pandas as pd
 import ast_scope
 import sqlite3
 
-
+index_counter = 0
 def extract_variables_and_functions_naive(file_path, author_type):
+    global index_counter
     try:
         with open(file_path, 'r') as file:
             tree = ast.parse(file.read(), filename=file_path)
@@ -22,22 +23,25 @@ def extract_variables_and_functions_naive(file_path, author_type):
     for node in ast.walk(tree):
         if isinstance(node, ast.FunctionDef):
             nameScope = "GlobalScope" if isinstance(scope_info[node], ast_scope.scope.GlobalScope) else "FunctionScope"
-            name = {"name": node.name, "nameType": "function", "nameScope": nameScope,
+            name = {"id": index_counter, "name": node.name, "nameType": "function", "nameScope": nameScope,
                     "author": author_type}
             names.append(name)
+            index_counter += 1
         elif isinstance(node, ast.Assign):
             for target in node.targets:
                 if isinstance(target, ast.Name):
                     nameScope = "GlobalScope" if isinstance(scope_info[target],
                                                             ast_scope.scope.GlobalScope) else "FunctionScope"
-                    name = {"name": target.id, "nameType": "variable", "nameScope": nameScope,
+                    name = {"id": index_counter, "name": target.id, "nameType": "variable", "nameScope": nameScope,
                             "author": author_type}
                     names.append(name)
+                    index_counter += 1
         elif isinstance(node, ast.ClassDef):
             nameScope = "GlobalScope" if isinstance(scope_info[node], ast_scope.scope.GlobalScope) else "FunctionScope"
-            name = {"name": node.name, "nameType": "class", "nameScope": nameScope,
+            name = {"id": index_counter, "name": node.name, "nameType": "class", "nameScope": nameScope,
                     "author": author_type}
             names.append(name)
+            index_counter += 1
     # Now write the result to pandas dataframe
     names_df = pd.DataFrame.from_records(names)
     return names_df
@@ -52,7 +56,7 @@ for filename in files:
     file_path = os.path.join(chinese_py_file_dir, filename)
     try:
         names_df = extract_variables_and_functions_naive(file_path, author_type='Chinese')
-        names_df.to_sql('ChineseVariableTable', conn, if_exists='append', index=False)
+        names_df.to_sql('NameTable', conn, if_exists='append', index=False)
     except:
         continue
 
@@ -63,7 +67,8 @@ for filename in files:
     file_path = os.path.join(chinese_py_file_dir, filename)
     try:
         names_df = extract_variables_and_functions_naive(file_path, author_type='English')
-        names_df.to_sql('EnglishVariableTable', conn, if_exists='append', index=False)
+        names_df.to_sql('NameTable', conn, if_exists='append', index=False)
     except:
         continue
 
+conn.close()

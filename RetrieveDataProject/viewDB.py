@@ -29,6 +29,5 @@ def clear_database():
     conn.commit()
     conn.close()
 
-ChineseTable = 'ChineseVariableTable'
-EnglishTable = 'EnglishVariableTable'
-view_table(EnglishTable)
+# clear_database()
+view_table('NameTable')
