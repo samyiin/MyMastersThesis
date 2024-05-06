@@ -6,3 +6,4 @@ RetrieveDataProject/PyFiles/*
 RetrieveDataProject/DownloadProjects/*
 data.db
 identifier.sqlite
+nltk_data/*
