@@ -4,6 +4,8 @@
 AskChatGPT/OPENAI_API_KEY
 RetrieveDataProject/PyFiles/*
 RetrieveDataProject/DownloadProjects/*
+RetrieveDataProject/cacheGithubCall/*
 data.db
 identifier.sqlite
 nltk_data/*
+RetrieveDataProject/githubAPIToken
