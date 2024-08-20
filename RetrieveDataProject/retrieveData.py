@@ -65,11 +65,11 @@ First of all, for each proficiency group: we will select 100 american programmer
 bigger than 3Mb. Then we will see the distribution of the size of the repositories
 """
 df_repos = find_users_and_repos('USA')
-df_repos.to_csv('USA_repos.csv', index=False)
+# df_repos.to_csv('USA_repos.csv', index=False)
 
 """
 Now let's do the same for chinese
 """
 df_repos = find_users_and_repos('China')
-df_repos.to_csv('Chinese_repos.csv', index=False)
+# df_repos.to_csv('Chinese_repos.csv', index=False)
 

@@ -1,3 +1,4 @@
+ZipfLawAnalysis/SavedFiles/**
 .DS_Store
 ._.DS_Store
 .idea/
@@ -9,3 +10,7 @@ data.db
 identifier.sqlite
 nltk_data/*
 RetrieveDataProject/githubAPIToken
+ZipfLawAnalysis/OpenAIAPIKey
+ZipfLawAnalysis/CacheFunctionCalls/*
+ZipfLawAnalysis/Backup
+*/.ipynb_checkpoints/**
